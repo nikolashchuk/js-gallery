@@ -42,7 +42,6 @@ function onSearch(event) {
     .then(data => {
       createGallery(data);
 
-      //   const item = document.querySelector('.gallery__item:last-child');
       observer.observe(refs.guard);
 
       if (data.totalHits === 0) {
