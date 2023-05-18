@@ -3,6 +3,7 @@ import { PixabayApi } from './pixabayAPI';
 import { createGallery } from './createMarkup';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { Notify } from 'notiflix';
+import { spinnerPlay, spinnerStop } from './spinner';
 
 const options = {
   root: null,
@@ -14,10 +15,16 @@ const callback = function (entries, observer) {
     if (entry.isIntersecting) {
       console.log(entry.target);
       pixabayApi.incrementPage();
-      pixabayApi.getPhotos().then(data => {
-        createGallery(data);
-        observer.observe(refs.guard);
-      });
+      spinnerPlay();
+      pixabayApi
+        .getPhotos()
+        .then(data => {
+          createGallery(data);
+          observer.observe(refs.guard);
+        })
+        .finally(() => {
+          spinnerStop();
+        });
     }
   });
 };
@@ -37,6 +44,8 @@ function onSearch(event) {
   refs.list.innerHTML = '';
   pixabayApi.resetPage();
   pixabayApi.query = searchQuery;
+  spinnerPlay();
+
   pixabayApi
     .getPhotos()
     .then(data => {
@@ -50,6 +59,9 @@ function onSearch(event) {
         );
       }
     })
-    .catch(error => console.log(error));
+    .catch(error => console.log(error))
+    .finally(() => {
+      spinnerStop();
+    });
   refs.form.reset();
 }
