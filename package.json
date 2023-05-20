@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://nikolashchuk.github.io/repo",
+  "homepage": "https://nikolashchuk.github.io/js-gallery",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /repo/"
+    "build": "parcel build src/*.html --public-url /js-gallery/"
   },
   "repository": {
     "type": "git",
