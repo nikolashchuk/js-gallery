@@ -4,4 +4,5 @@ export const refs = {
   guard: document.querySelector('.js-guard'),
   backdrop: document.querySelector('[data-load]'),
   spinner: document.querySelector('.js-spinner'),
+  goTopBtn: document.querySelector('.js-scroll-top'),
 };

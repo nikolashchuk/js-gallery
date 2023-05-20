@@ -87,3 +87,17 @@
   gap: 10px;
   font-size: 12px;
 }
+
+.js-scroll-top {
+  position: fixed;
+  bottom: 90px;
+  right: 50px;
+  font-size: 40px;
+  z-index: 100;
+  cursor: pointer;
+  color: darksalmon;
+  display: none;
+}
+.js-scroll-top--show {
+  display: block;
+}

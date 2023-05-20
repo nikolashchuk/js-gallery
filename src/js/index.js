@@ -13,7 +13,6 @@ const options = {
 const callback = function (entries, observer) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      console.log(entry.target);
       pixabayApi.incrementPage();
       spinnerPlay();
       pixabayApi
@@ -64,4 +63,24 @@ function onSearch(event) {
       spinnerStop();
     });
   refs.form.reset();
+}
+
+refs.goTopBtn.addEventListener('click', onTop);
+window.addEventListener('scroll', trackScroll);
+
+function onTop() {
+  if (window.pageYOffset > 0) {
+    window.scrollBy(0, -25);
+    setTimeout(onTop, 0);
+  }
+}
+
+function trackScroll() {
+  const offset = window.pageYOffset;
+  const height = document.documentElement.clientHeight;
+  if (offset > height) {
+    refs.goTopBtn.classList.add('js-scroll-top--show');
+  } else {
+    refs.goTopBtn.classList.remove('js-scroll-top--show');
+  }
 }
